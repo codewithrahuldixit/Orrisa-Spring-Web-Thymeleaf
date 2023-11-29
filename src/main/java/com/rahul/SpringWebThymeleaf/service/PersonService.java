@@ -23,4 +23,9 @@ public class PersonService {
 		return repository.findAll();
 	}
 
+	public Person retreivePersonById(int id) {
+	
+		return repository.findById(id).get();
+	}
+
 }

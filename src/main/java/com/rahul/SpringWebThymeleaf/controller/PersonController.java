@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.rahul.SpringWebThymeleaf.model.Person;
@@ -20,10 +23,7 @@ public class PersonController {
 		super();
 		this.service = service;
 	}
-	@GetMapping({"/","/welcome"})
-	public String welcome() {
-		return "welcome";
-	}
+	
 	@GetMapping("/person")
 	public String getPerson(@RequestParam int id , Model model) {
 		Person person = service.retreivePersonById(id);
@@ -31,14 +31,32 @@ public class PersonController {
 		return "sample";
 	}
 	@GetMapping("/addPerson")
-	public String addPage() {
-		return "addnew";
+	public String addPage(Model model) {
+		model.addAttribute("person", new Person());
+		return "update";
 	}
-	@GetMapping("/persons")
+	@GetMapping({"/persons","/"})
 	public String getAllPerson(Model model) {
 		List<Person> persons = service.retreiveAllPersons();
 		model.addAttribute("persons",persons);
 		return "index";
+	}
+	@GetMapping("/showFormUpdate/{id}")
+	public String showUpdateForm(@PathVariable int id , Model model) {
+		Person person = service.retreivePersonById(id);
+		model.addAttribute("person", person);
+		return "update";
+	}
+	@PostMapping("/save")
+	public String savePerson(@ModelAttribute("person") Person person) {
+		System.out.println(person);
+		service.storePerson(person);
+		return "redirect:/";
+	}
+	@GetMapping("/deletePerson/{id}")
+	public String savePerson(@PathVariable int id) {
+		service.deletePersonByid(id);
+		return "redirect:/";
 	}
 
 }

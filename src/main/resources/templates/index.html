@@ -14,23 +14,28 @@
 	<div class="container" align="center">
 	<a th:href="@{/addPerson}" class="btn btn-primary" btn-sm mb="3">Add Person</a>
 	<h1>All The Person Information As Follows</h1>
-	<table style="width: 80% ; border: 1px;">
+	<table style="width: 80% ; border: 5px;" class="table table-stripped table-reposive-md">
 		<tr>
 		
 			<th>Person Name</th>
 			<th>Person Email</th>
+			<th>Action</th>
 		</tr>
 		<tr th:each="person:${persons}">
 			
 			<td th:text="${person.name}">Name</td>
 			<td th:text="${person.email}">Email</td>
 			<td>
-		
+				<a th:href="@{/showFormUpdate/{id}(id=${person.id})}" 
+				class="btn btn-primary">Update</a>
+				<a th:href="@{/deletePerson/{id}(id=${person.id})}" 
+				class="btn btn-danger">Delete</a>
+	
 			</td>
 		</tr>
 	</table>
 	</div>
-	<a href="/welcome">Click Here Go to Welcome</a>
+	
 </body>
 
 </html>

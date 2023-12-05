@@ -28,4 +28,12 @@ public class PersonService {
 		return repository.findById(id).get();
 	}
 
+	public void storePerson(Person person) {
+		repository.save(person);
+	}
+
+	public void deletePersonByid(int id) {
+		repository.deleteById(id);
+	}
+
 }

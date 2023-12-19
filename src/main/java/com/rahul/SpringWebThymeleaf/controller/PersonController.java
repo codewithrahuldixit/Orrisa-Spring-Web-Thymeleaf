@@ -53,14 +53,17 @@ public class PersonController {
 	}
 	@PostMapping("/save")
 	public String savePerson(@ModelAttribute("person") Person person) {
-		System.out.println(person);
+		//System.out.println(person);
 		service.storePerson(person);
 		return "redirect:/";
 	}
+	
+	///here
 	@GetMapping("/deletePerson/{id}")
 	public String savePerson(@PathVariable int id) {
 		service.deletePersonByid(id);
 		return "redirect:/";
 	}
+	//here
 
 }

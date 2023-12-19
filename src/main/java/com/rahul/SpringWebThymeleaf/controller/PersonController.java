@@ -2,6 +2,8 @@ package com.rahul.SpringWebThymeleaf.controller;
 
 import java.util.List;
 
+import javax.management.RuntimeErrorException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,10 +37,12 @@ public class PersonController {
 		model.addAttribute("person", new Person());
 		return "update";
 	}
+	//target Code 
 	@GetMapping({"/persons","/"})
 	public String getAllPerson(Model model) {
 		List<Person> persons = service.retreiveAllPersons();
 		model.addAttribute("persons",persons);
+		//throw new RuntimeException("Exception Arrised In Method");
 		return "index";
 	}
 	@GetMapping("/showFormUpdate/{id}")

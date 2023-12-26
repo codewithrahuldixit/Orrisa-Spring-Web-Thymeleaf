@@ -15,7 +15,7 @@ public class PersonService {
 		super();
 		this.repository = repository;
 		repository.save(new Person(101,"Rahul","rahul@gmail.com"));
-		repository.save(new Person(102,"balram","balram@gmail.com"));
+		repository.save(new Person(102,"Balram","balram@gmail.com"));
 		repository.save(new Person(103,"Jena","jena@gmail.com"));
 	}
 	
